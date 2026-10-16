@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math English Midterm Review – Grade 10 | Mr. Nguyễn Hữu Trung</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#6366f1; --primary-dark:#4f46e5; --secondary:#ec4899;
+  --accent:#f59e0b; --success:#10b981; --danger:#ef4444;
+  --bg:#f5f3ff; --card:#ffffff; --text:#1e293b; --muted:#64748b;
+  --shadow:0 10px 30px rgba(99,102,241,.12);
+  --shadow-lg:0 20px 50px rgba(99,102,241,.18);
+}
+body{
+  font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text);
+  min-height:100vh; line-height:1.6;
+  background-image:
+    radial-gradient(circle at 10% 10%,rgba(99,102,241,.12) 0,transparent 40%),
+    radial-gradient(circle at 90% 20%,rgba(236,72,153,.10) 0,transparent 40%),
+    radial-gradient(circle at 50% 90%,rgba(245,158,11,.08) 0,transparent 40%);
+  background-attachment:fixed;
+}
+h1,h2,h3,h4{font-family:'Fredoka',sans-serif;letter-spacing:.3px}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+input,select{font-family:inherit;outline:none}
+
+/* ========== LOGIN ========== */
+#loginScreen{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:20px;z-index:100;
+  background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#ec4899 100%);
+}
+.login-card{
+  background:#fff;border-radius:24px;padding:40px 36px;max-width:460px;width:100%;
+  box-shadow:var(--shadow-lg);animation:pop .5s ease;
+}
+@keyframes pop{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:none}}
+.login-card .logo{
+  width:80px;height:80px;margin:0 auto 16px;border-radius:24px;
+  background:linear-gradient(135deg,#6366f1,#ec4899);
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;color:#fff;box-shadow:0 10px 30px rgba(236,72,153,.35);
+}
+.login-card h1{font-size:24px;text-align:center;color:#4f46e5;margin-bottom:6px}
+.login-card p.sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;color:#475569;margin-bottom:6px}
+.field input,.field select{
+  width:100%;padding:12px 14px;border:2px solid #e2e8f0;border-radius:12px;
+  font-size:14px;transition:.2s;background:#f8fafc;
+}
+.field input:focus,.field select:focus{
+  border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(99,102,241,.12);
+}
+.btn-primary{
+  width:100%;padding:14px;border-radius:12px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  font-weight:700;font-size:15px;transition:.2s;letter-spacing:.3px;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(99,102,241,.4)}
+
+/* ========== APP LAYOUT ========== */
+#app{display:none;padding-top:76px}
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:64px;z-index:50;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(99,102,241,.12);
+  display:flex;align-items:center;padding:0 20px;gap:14px;
+  box-shadow:0 4px 20px rgba(99,102,241,.06);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#4f46e5;font-size:16px}
+.brand .mark{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,#6366f1,#ec4899);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.user-pill{
+  margin-left:auto;display:flex;align-items:center;gap:10px;
+  background:#eef2ff;padding:6px 6px 6px 14px;border-radius:30px;font-size:13px;
+}
+.user-pill .avatar{
+  width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f59e0b);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;
+}
+.logout-btn{background:#fff;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600;color:#ef4444}
+.logout-btn:hover{background:#fef2f2}
+
+/* ========== NAV TABS ========== */
+.tabs{
+  display:flex;gap:6px;padding:8px 20px;overflow-x:auto;
+  position:sticky;top:64px;z-index:40;
+  background:rgba(245,243,255,.9);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(99,102,241,.08);
+}
+.tabs::-webkit-scrollbar{height:4px}
+.tabs::-webkit-scrollbar-thumb{background:#c7d2fe;border-radius:4px}
+.tab{
+  padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;
+  background:#fff;color:var(--muted);white-space:nowrap;transition:.2s;border:2px solid transparent;
+}
+.tab:hover{color:var(--primary)}
+.tab.active{
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 6px 18px rgba(99,102,241,.35);
+}
+
+/* ========== CONTAINER ========== */
+.container{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+.section{display:none;animation:fade .35s ease}
+.section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.hero{
+  background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 60%,#ec4899 100%);
+  border-radius:24px;padding:28px 30px;color:#fff;margin-bottom:22px;
+  box-shadow:var(--shadow-lg);position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+  background:rgba(255,255,255,.12);top:-60px;right:-40px;
+}
+.hero::after{
+  content:"";position:absolute;width:120px;height:120px;border-radius:50%;
+  background:rgba(255,255,255,.10);bottom:-50px;right:80px;
+}
+.hero h2{font-size:26px;margin-bottom:6px;position:relative}
+.hero p{font-size:14px;opacity:.95;position:relative}
+.hero .teacher{font-size:12px;margin-top:8px;opacity:.9;position:relative}
+
+/* ========== CARD ========== */
+.card{
+  background:var(--card);border-radius:20px;padding:22px 24px;
+  box-shadow:var(--shadow);margin-bottom:18px;
+}
+.card h3{font-size:18px;color:#4f46e5;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.card h3 .num{
+  width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+
+/* ========== VOCAB ========== */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.vocab-item{
+  background:linear-gradient(135deg,#f8fafc,#eef2ff);border-radius:14px;
+  padding:14px 16px;border:1px solid #e0e7ff;transition:.25s;position:relative;
+}
+.vocab-item:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(99,102,241,.15);border-color:#a5b4fc}
+.vocab-item .en{font-weight:700;color:#4f46e5;font-size:15px;display:flex;align-items:center;gap:8px}
+.vocab-item .ipa{font-size:12px;color:#8b5cf6;margin:2px 0 4px;font-style:italic}
+.vocab-item .vi{font-size:13px;color:#475569}
+.speak-btn{
+  background:linear-gradient(135deg,#ec4899,#f59e0b);color:#fff;border-radius:50%;
+  width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;margin-left:auto;transition:.2s;
+}
+.speak-btn:hover{transform:scale(1.15)}
+
+/* ========== THEORY ========== */
+.theory-block{background:#f8fafc;border-left:4px solid #6366f1;border-radius:10px;padding:14px 18px;margin-bottom:14px}
+.theory-block h4{color:#4f46e5;font-size:15px;margin-bottom:8px}
+.theory-block ul{margin-left:18px;font-size:14px;color:#334155}
+.theory-block ul li{margin-bottom:4px}
+.formula{
+  background:#eef2ff;border-radius:8px;padding:10px 14px;margin:8px 0;
+  font-family:'Courier New',monospace;font-size:14px;color:#4338ca;
+  border:1px dashed #a5b4fc;
+}
+
+/* ========== SYSTEM 1 ========== */
+.sys1-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.sys1-tab{
+  padding:10px 18px;border-radius:12px;background:#fff;font-weight:600;font-size:13px;
+  color:var(--muted);border:2px solid #e2e8f0;transition:.2s;
+}
+.sys1-tab.active{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(99,102,241,.3)}
+
+.q-block{
+  background:#fff;border-radius:16px;padding:20px 22px;margin-bottom:14px;
+  box-shadow:0 4px 16px rgba(15,23,42,.05);border:1px solid #f1f5f9;
+  animation:fade .3s;
+}
+.q-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.q-num{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;
+}
+.q-text{font-size:15px;font-weight:500;color:#1e293b}
+.opt-list{display:grid;gap:8px;margin-top:12px}
+.opt{
+  padding:12px 16px;border-radius:12px;border:2px solid #e2e8f0;background:#fafbff;
+  font-size:14px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px;
+}
+.opt:hover{border-color:#a5b4fc;background:#eef2ff}
+.opt .letter{
+  width:26px;height:26px;border-radius:8px;background:#e2e8f0;color:#475569;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;
+}
+.opt.correct{background:#dcfce7;border-color:#10b981}
+.opt.correct .letter{background:#10b981;color:#fff}
+.opt.wrong{background:#fee2e2;border-color:#ef4444}
+.opt.wrong .letter{background:#ef4444;color:#fff}
+.opt.locked{cursor:default;pointer-events:none}
+.explain{
+  margin-top:12px;padding:12px 14px;border-radius:10px;background:#fffbeb;
+  border-left:4px solid #f59e0b;font-size:13px;color:#78350f;display:none;
+}
+.explain.show{display:block;animation:fade .3s}
+.explain b{color:#b45309}
+
+/* ========== SYSTEM 2 ========== */
+.timer-bar{
+  position:sticky;top:108px;z-index:30;
+  background:linear-gradient(135deg,#1e293b,#334155);color:#fff;
+  border-radius:16px;padding:14px 20px;margin-bottom:18px;
+  display:flex;align-items:center;gap:16px;box-shadow:var(--shadow-lg);
+}
+.timer-bar .time{font-family:'Fredoka',sans-serif;font-size:22px;font-weight:700;letter-spacing:1px}
+.timer-bar .time.warn{color:#fca5a5;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.5}}
+.timer-bar .info{margin-left:auto;font-size:12px;opacity:.85;text-align:right}
+
+.q-part-title{
+  background:linear-gradient(135deg,#eef2ff,#fce7f3);
+  border-radius:14px;padding:12px 18px;margin:20px 0 14px;
+  font-weight:700;color:#4f46e5;font-size:15px;border-left:4px solid #6366f1;
+}
+.tf-list{display:grid;gap:8px;margin-top:10px}
+.tf-row{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;
+  background:#f8fafc;border:1px solid #e2e8f0;font-size:14px;
+}
+.tf-row .stmt{flex:1}
+.tf-btn{
+  padding:6px 14px;border-radius:8px;font-weight:700;font-size:12px;
+  background:#e2e8f0;color:#475569;transition:.2s;margin-left:4px;
+}
+.tf-btn.t.selected{background:#10b981;color:#fff}
+.tf-btn.f.selected{background:#ef4444;color:#fff}
+.short-input{
+  width:100%;padding:12px 16px;border:2px solid #e2e8f0;border-radius:12px;
+  font-size:15px;margin-top:10px;background:#fafbff;transition:.2s;
+}
+.short-input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(99,102,241,.1)}
+
+/* ========== RESULTS ========== */
+.result-box{
+  background:linear-gradient(135deg,#fff,#f0f9ff);border-radius:20px;
+  padding:24px;text-align:center;box-shadow:var(--shadow-lg);margin-bottom:18px;
+  border:2px solid #bfdbfe;
+}
+.result-box .score{font-size:46px;font-weight:800;font-family:'Fredoka',sans-serif;
+  background:linear-gradient(135deg,#6366f1,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;}
+.result-box .label{color:var(--muted);font-size:13px;margin-bottom:6px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.stat{background:#fff;border-radius:14px;padding:14px;text-align:center;border:1px solid #e0e7ff}
+.stat .n{font-size:22px;font-weight:800;color:#4f46e5;font-family:'Fredoka',sans-serif}
+.stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.advice{
+  background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:14px;
+  padding:16px 20px;margin-top:16px;border-left:4px solid #f59e0b;
+  font-size:14px;color:#78350f;text-align:left;
+}
+.advice h4{color:#b45309;margin-bottom:8px;font-size:15px}
+
+.btn{
+  padding:12px 26px;border-radius:12px;font-weight:700;font-size:14px;transition:.2s;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(99,102,241,.35)}
+.btn.ghost{background:#fff;color:#4f46e5;border:2px solid #e0e7ff}
+.btn.danger{background:linear-gradient(135deg,#ef4444,#f97316)}
+
+/* ========== RANKING ========== */
+.rank-table{width:100%;border-collapse:separate;border-spacing:0 6px}
+.rank-table th{
+  text-align:left;padding:10px 14px;font-size:12px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;font-weight:600;
+}
+.rank-table td{
+  padding:12px 14px;background:#fff;font-size:14px;
+}
+.rank-table tr td:first-child{border-radius:12px 0 0 12px}
+.rank-table tr td:last-child{border-radius:0 12px 12px 0}
+.rank-table .rank-badge{
+  width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:13px;background:#e2e8f0;color:#475569;
+}
+.rank-badge.gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff}
+.rank-badge.silver{background:linear-gradient(135deg,#cbd5e1,#94a3b8);color:#fff}
+.rank-badge.bronze{background:linear-gradient(135deg,#f59e0b,#b45309);color:#fff}
+
+/* ========== MISC ========== */
+.empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+.empty .ico{font-size:48px;margin-bottom:10px;opacity:.5}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#e0e7ff;color:#4f46e5}
+.pill.easy{background:#dcfce7;color:#166534}
+.pill.med{background:#fef3c7;color:#92400e}
+.pill.hard{background:#fee2e2;color:#991b1b}
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:#1e293b;color:#fff;padding:12px 24px;border-radius:14px;font-size:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);z-index:200;opacity:0;transition:.35s;
+}
+.toast.show{transform:translateX(-50%);opacity:1}
+
+@media(max-width:640px){
+  .hero h2{font-size:20px}
+  .container{padding:16px 14px 50px}
+  .card{padding:18px}
+  .user-pill span.name{display:none}
+  .timer-bar{top:104px}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== LOGIN ==================== -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="logo">📐</div>
+    <h1>Math Midterm Review</h1>
+    <p class="sub">Grade 10 – English Program | Mid-Term 1</p>
+    <div class="field">
+      <label>Full name / Họ và tên</label>
+      <input id="lgName" placeholder="e.g. Nguyen Van A" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Class / Lớp</label>
+      <input id="lgClass" placeholder="e.g. 10A1" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>School / Trường</label>
+      <input id="lgSchool" placeholder="e.g. THPT Trần Phú" value="THPT Trần Phú" autocomplete="off">
+    </div>
+    <button class="btn-primary" onclick="doLogin()">🚀 Start Learning</button>
+    <p style="text-align:center;font-size:11px;color:#94a3b8;margin-top:14px">
+      Teacher: Mr. Nguyễn Hữu Trung · 0964 848 989
+    </p>
+  </div>
+</div>
+
+<!-- ==================== APP ==================== -->
+<div id="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="mark">📐</div>
+      <span>Math 10 · Midterm 1</span>
+    </div>
+    <div class="user-pill">
+      <span class="name" id="ubName">–</span>
+      <div class="avatar" id="ubAvatar">A</div>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="home">🏠 Home</button>
+    <button class="tab" data-tab="vocab">📚 Vocabulary</button>
+    <button class="tab" data-tab="theory">🧠 Theory</button>
+    <button class="tab" data-tab="sys1">🎯 Practice</button>
+    <button class="tab" data-tab="sys2">📝 Exam</button>
+    <button class="tab" data-tab="rank">🏆 Ranking</button>
+  </div>
+
+  <div class="container">
+
+    <!-- HOME -->
+    <div class="section active" id="sec-home">
+      <div class="hero">
+        <h2>Welcome back, <span id="heroName">Student</span>! 👋</h2>
+        <p>Ôn tập giữa kỳ 1 – Toán tiếng Anh lớp 10 (Kết nối tri thức với cuộc sống)</p>
+        <p class="teacher">GV: Nguyễn Hữu Trung – THPT Trần Phú – 0964 848 989</p>
+      </div>
+      <div class="card">
+        <h3><span class="num">1</span>Topics covered</h3>
+        <ul style="margin-left:20px;font-size:14px;color:#475569">
+          <li><b>Sets & Logic:</b> set notation, subsets, union, intersection, complement, propositions, implication, equivalence.</li>
+          <li><b>Functions:</b> domain, range, linear functions, quadratic functions, even/odd functions.</li>
+          <li><b>Quadratic Equations & Inequalities:</b> discriminant, Vieta's formulas, sign of quadratic, systems of inequalities.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="num">2</span>How to use this website</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+          <div class="theory-block">
+            <h4>📚 Vocabulary</h4>
+            <p style="font-size:13px">30 key math terms with IPA + clickable pronunciation.</p>
+          </div>
+          <div class="theory-block" style="border-color:#ec4899">
+            <h4>🧠 Theory</h4>
+            <p style="font-size:13px">All formulas & properties you must memorise.</p>
+          </div>
+          <div class="theory-block" style="border-color:#10b981">
+            <h4>🎯 Practice (System 1)</h4>
+            <p style="font-size:13px">30 MCQs, instant feedback + error analysis.</p>
+          </div>
+          <div class="theory-block" style="border-color:#f59e0b">
+            <h4>📝 Exam (System 2)</h4>
+            <p style="font-size:13px">66 questions in Bộ GD 3-part format, with timer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOCABULARY -->
+    <div class="section" id="sec-vocab">
+      <div class="hero" style="background:linear-gradient(135deg,#06b6d4,#6366f1)">
+        <h2>📚 Math Vocabulary</h2>
+        <p>Click 🔊 to hear the pronunciation. Practice saying the words aloud.</p>
+      </div>
+      <div class="card">
+        <h3><span class="num">A</span>Sets & Logic</h3>
+        <div class="vocab-grid" id="vocab1"></div>
+      </div>
+      <div class="card">
+        <h3><span class="num">B</span>Functions</h3>
+        <div class="vocab-grid" id="vocab2"></div>
+      </div>
+      <div class="card">
+        <h3><span class="num">C</span>Quadratics & Inequalities</h3>
+        <div class="vocab-grid" id="vocab3"></div>
+      </div>
+    </div>
+
+    <!-- THEORY -->
+    <div class="section" id="sec-theory">
+      <div class="hero" style="background:linear-gradient(135deg,#10b981,#06b6d4)">
+        <h2>🧠 Theory to Remember</h2>
+        <p>Summary of all key knowledge for Mid-Term 1.</p>
+      </div>
+      <div class="card">
+        <h3><span class="num">1</span>Sets & Logic</h3>
+        <div class="theory-block">
+          <h4>Set notation</h4>
+          <div class="formula">A = { x ∈ ℝ | P(x) }  —  roster form / set-builder notation</div>
+          <ul>
+            <li>a ∈ A: <i>a is an element of A</i>; a ∉ A: <i>a is not an element of A</i>.</li>
+            <li>A ⊂ B (A is a subset of B) ⇔ ∀x ∈ A ⇒ x ∈ B.</li>
+            <li>A = B ⇔ A ⊂ B and B ⊂ A.</li>
+            <li>Number of subsets of a set with n elements: <b>2<sup>n</sup></b>.</li>
+          </ul>
+        </div>
+        <div class="theory-block">
+          <h4>Set operations</h4>
+          <ul>
+            <li>Union: A ∪ B = { x | x ∈ A <b>or</b> x ∈ B }</li>
+            <li>Intersection: A ∩ B = { x | x ∈ A <b>and</b> x ∈ B }</li>
+            <li>Difference: A \ B = { x | x ∈ A and x ∉ B }</li>
+            <li>Complement (in ℝ): C<sub>ℝ</sub>A = ℝ \ A</li>
+          </ul>
+        </div>
+        <div class="theory-block">
+          <h4>Propositions</h4>
+          <ul>
+            <li>Negation of P: "<b>not P</b>" (symbol ¬P or P̄).</li>
+            <li>Implication P ⇒ Q: "if P then Q". P is <b>sufficient</b> for Q; Q is <b>necessary</b> for P.</li>
+            <li>Equivalence P ⇔ Q: P is <b>necessary and sufficient</b> for Q.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="num">2</span>Functions</h3>
+        <div class="theory-block">
+          <h4>Domain & Range</h4>
+          <div class="formula">Domain of f(x) = 1/g(x): g(x) ≠ 0<br>
+          Domain of f(x) = √(g(x)): g(x) ≥ 0</div>
+        </div>
+        <div class="theory-block">
+          <h4>Linear function: y = ax + b (a ≠ 0)</h4>
+          <ul>
+            <li>Slope = a; y-intercept = b.</li>
+            <li>Increasing if a > 0, decreasing if a < 0.</li>
+          </ul>
+        </div>
+        <div class="theory-block">
+          <h4>Quadratic function: y = ax² + bx + c (a ≠ 0)</h4>
+          <ul>
+            <li>Parabola opens <b>upward</b> if a > 0, <b>downward</b> if a < 0.</li>
+            <li>Vertex: <b>I(−b/2a; −Δ/4a)</b> with Δ = b² − 4ac.</li>
+            <li>Axis of symmetry: <b>x = −b/2a</b>.</li>
+          </ul>
+        </div>
+        <div class="theory-block">
+          <h4>Even / Odd function</h4>
+          <ul>
+            <li>Even: f(−x) = f(x) — graph symmetric about Oy.</li>
+            <li>Odd: f(−x) = −f(x) — graph symmetric about origin O.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="num">3</span>Quadratic Equations & Inequalities</h3>
+        <div class="theory-block">
+          <h4>Quadratic equation ax² + bx + c = 0</h4>
+          <div class="formula">Δ = b² − 4ac<br>
+          Δ > 0: two distinct roots  x = (−b ± √Δ) / 2a<br>
+          Δ = 0: double root  x = −b / 2a<br>
+          Δ < 0: no real roots</div>
+        </div>
+        <div class="theory-block">
+          <h4>Vieta's formulas</h4>
+          <div class="formula">x₁ + x₂ = −b/a    ·    x₁ · x₂ = c/a</div>
+        </div>
+        <div class="theory-block">
+          <h4>Sign of f(x) = ax² + bx + c</h4>
+          <ul>
+            <li>If Δ < 0: f(x) has the sign of a for all x.</li>
+            <li>If Δ = 0: f(x) has the sign of a, except f(−b/2a) = 0.</li>
+            <li>If Δ > 0: f(x) is opposite to a between the two roots, same as a outside.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTEM 1 -->
+    <div class="section" id="sec-sys1">
+      <div class="hero" style="background:linear-gradient(135deg,#10b981,#059669)">
+        <h2>🎯 Practice – System 1</h2>
+        <p>30 MCQs · Instant feedback · Error analysis & study advice</p>
+      </div>
+      <div class="sys1-tabs">
+        <button class="sys1-tab active" data-g="1">Group 1 · Sets & Logic</button>
+        <button class="sys1-tab" data-g="2">Group 2 · Functions</button>
+        <button class="sys1-tab" data-g="3">Group 3 · Quadratics</button>
+      </div>
+      <div id="sys1Content"></div>
+    </div>
+
+    <!-- SYSTEM 2 -->
+    <div class="section" id="sec-sys2">
+      <div class="hero" style="background:linear-gradient(135deg,#f59e0b,#ec4899)">
+        <h2>📝 Mock Exam – System 2</h2>
+        <p>Bộ GD 3-part format · 22 questions per group · Timer · Auto scoring</p>
+      </div>
+      <div class="sys1-tabs">
+        <button class="sys1-tab active" data-s2="1">📘 Group 1</button>
+        <button class="sys1-tab" data-s2="2">📗 Group 2</button>
+        <button class="sys1-tab" data-s2="3">📕 Group 3</button>
+      </div>
+      <div id="sys2Content"></div>
+    </div>
+
+    <!-- RANKING -->
+    <div class="section" id="sec-rank">
+      <div class="hero" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)">
+        <h2>🏆 Daily Ranking</h2>
+        <p>Higher score ranks higher. Ties broken by shorter time.</p>
+      </div>
+      <div class="card">
+        <h3><span class="num">🏅</span>Today's Leaderboard</h3>
+        <div id="rankContent"></div>
+        <div style="margin-top:14px;text-align:right">
+          <button class="btn ghost" onclick="clearRank()">🗑 Clear today's data</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const VOCAB = {
+  1: [
+    {en:"Set", ipa:"/set/", vi:"tập hợp"},
+    {en:"Subset", ipa:"/ˈsʌbset/", vi:"tập con"},
+    {en:"Element", ipa:"/ˈelɪmənt/", vi:"phần tử"},
+    {en:"Union", ipa:"/ˈjuːniən/", vi:"hợp"},
+    {en:"Intersection", ipa:"/ˌɪntəˈsekʃn/", vi:"giao"},
+    {en:"Complement", ipa:"/ˈkɒmplɪmənt/", vi:"phần bù"},
+    {en:"Proposition", ipa:"/ˌprɒpəˈzɪʃn/", vi:"mệnh đề"},
+    {en:"Negation", ipa:"/nɪˈɡeɪʃn/", vi:"phủ định"},
+    {en:"Implication", ipa:"/ˌɪmplɪˈkeɪʃn/", vi:"kéo theo"},
+    {en:"Equivalence", ipa:"/ɪˈkwɪvələns/", vi:"tương đương"},
+    {en:"Necessary", ipa:"/ˈnesəsəri/", vi:"cần"},
+    {en:"Sufficient", ipa:"/səˈfɪʃnt/", vi:"đủ"}
+  ],
+  2: [
+    {en:"Domain", ipa:"/dəˈmeɪn/", vi:"tập xác định"},
+    {en:"Range", ipa:"/reɪndʒ/", vi:"tập giá trị"},
+    {en:"Function", ipa:"/ˈfʌŋkʃn/", vi:"hàm số"},
+    {en:"Linear", ipa:"/ˈlɪniə(r)/", vi:"bậc nhất"},
+    {en:"Quadratic", ipa:"/kwɒˈdrætɪk/", vi:"bậc hai"},
+    {en:"Variable", ipa:"/ˈveəriəbl/", vi:"biến số"},
+    {en:"Coefficient", ipa:"/ˌkəʊɪˈfɪʃnt/", vi:"hệ số"},
+    {en:"Even function", ipa:"/ˈiːvn ˈfʌŋkʃn/", vi:"hàm số chẵn"},
+    {en:"Odd function", ipa:"/ɒd ˈfʌŋkʃn/", vi:"hàm số lẻ"}
+  ],
+  3: [
+    {en:"Parabola", ipa:"/pəˈræbələ/", vi:"parabol"},
+    {en:"Vertex", ipa:"/ˈvɜːteks/", vi:"đỉnh"},
+    {en:"Axis of symmetry", ipa:"/ˈæksɪs əv ˈsɪmətri/", vi:"trục đối xứng"},
+    {en:"Inequality", ipa:"/ˌɪnɪˈkwɒləti/", vi:"bất phương trình"},
+    {en:"Discriminant", ipa:"/dɪˈskrɪmɪnənt/", vi:"biệt thức"},
+    {en:"Solution", ipa:"/səˈluːʃn/", vi:"nghiệm"},
+    {en:"Root", ipa:"/ruːt/", vi:"nghiệm (của phương trình)"},
+    {en:"Intercept", ipa:"/ˈɪntəsept/", vi:"giao điểm với trục"},
+    {en:"Slope", ipa:"/sləʊp/", vi:"hệ số góc"}
+  ]
+};
+
+/* ---------- SYSTEM 1 ---------- */
+const SYS1 = {
+  1: [
+    {q:"Which of the following is a set?", opts:["1, 2, 3","{1, 2, 3}","1 + 2","x > 2"], ans:1, exp:"A set is written with curly braces { }."},
+    {q:"If A = {1, 2, 3} and B = {2, 3, 4}, find A ∩ B.", opts:["{1, 4}","{2, 3}","{1, 2, 3, 4}","∅"], ans:1, exp:"Intersection = common elements = {2, 3}."},
+    {q:"If A = {1, 2}, B = {2, 3}, find A ∪ B.", opts:["{1, 2, 3}","{2}","{1, 3}","∅"], ans:0, exp:"Union = all elements = {1, 2, 3}."},
+    {q:"The negation of the statement 'x > 5' is:", opts:["x < 5","x ≤ 5","x = 5","x ≠ 5"], ans:1, exp:"Negation of '>' is '≤'."},
+    {q:"How many subsets does the set {a, b, c} have?", opts:["3","6","8","9"], ans:2, exp:"2³ = 8 subsets."},
+    {q:"'If it rains, the ground is wet.' The sufficient condition is:", opts:["It rains","The ground is wet","Neither","Both"], ans:0, exp:"P ⇒ Q: P is sufficient for Q."},
+    {q:"Write A = {x ∈ ℕ | x < 4} in roster form.", opts:["{0, 1, 2, 3}","{1, 2, 3}","{0, 1, 2, 3, 4}","{1, 2, 3, 4}"], ans:0, exp:"ℕ includes 0; x < 4 gives {0, 1, 2, 3}."},
+    {q:"If A = {1, 2, 3, 4} and B = {2, 4, 5}, find A \\ B.", opts:["{1, 3}","{2, 4}","{5}","{1, 3, 5}"], ans:0, exp:"A \\ B = elements in A but not in B = {1, 3}."},
+    {q:"Which of the following is a proposition?", opts:["Hello!","2 + 2 = 4","x + 1","Close the door"], ans:1, exp:"Only '2 + 2 = 4' has a truth value (true)."},
+    {q:"If A ⊂ B and B ⊂ A, then:", opts:["A ≠ B","A = B","A ∩ B = ∅","Impossible"], ans:1, exp:"Mutual subset ⇒ equal sets."}
+  ],
+  2: [
+    {q:"The domain of f(x) = 1/x is:", opts:["ℝ","ℝ \\ {0}","[0, +∞)","(0, +∞)"], ans:1, exp:"Denominator ≠ 0 ⇒ x ≠ 0."},
+    {q:"Which is a linear function?", opts:["y = x²","y = 2x + 1","y = 1/x","y = √x"], ans:1, exp:"Linear form: y = ax + b."},
+    {q:"For f(x) = 2x − 3, f(2) = ?", opts:["1","4","−1","7"], ans:0, exp:"f(2) = 2·2 − 3 = 1."},
+    {q:"The range of f(x) = x² is:", opts:["ℝ","[0, +∞)","(−∞, 0]","(0, +∞)"], ans:1, exp:"x² ≥ 0 for all real x."},
+    {q:"The slope of y = −3x + 2 is:", opts:["3","−3","2","−2"], ans:1, exp:"Slope = coefficient of x = −3."},
+    {q:"The domain of f(x) = √(x − 2) is:", opts:["x ≥ 2","x > 2","x ≤ 2","All real"], ans:0, exp:"Radicand ≥ 0 ⇒ x − 2 ≥ 0."},
+    {q:"If f(x) = x² + 1, then f(−2) = ?", opts:["3","5","−3","4"], ans:1, exp:"(−2)² + 1 = 5."},
+    {q:"The y-intercept of y = 3x − 4 is:", opts:["3","−4","4","−3"], ans:1, exp:"y-intercept = b = −4."},
+    {q:"Which function is even?", opts:["f(x) = x³","f(x) = x²","f(x) = x + 1","f(x) = 1/x"], ans:1, exp:"f(−x) = (−x)² = x² = f(x)."},
+    {q:"The vertex of y = x² − 4x + 5 is:", opts:["(2, 1)","(−2, 1)","(2, −1)","(4, 5)"], ans:0, exp:"x = −b/2a = 2, y = 4 − 8 + 5 = 1."}
+  ],
+  3: [
+    {q:"The parabola y = x² opens:", opts:["Upward","Downward","Left","Right"], ans:0, exp:"a = 1 > 0 ⇒ opens upward."},
+    {q:"The axis of symmetry of y = x² − 6x + 5 is:", opts:["x = 3","x = −3","x = 6","x = −6"], ans:0, exp:"x = −b/2a = 6/2 = 3."},
+    {q:"Solve x² − 4 > 0.", opts:["x > 2","x < −2","x < −2 or x > 2","−2 < x < 2"], ans:2, exp:"a > 0, Δ > 0 ⇒ outside roots: x < −2 or x > 2."},
+    {q:"The discriminant of x² − 2x + 1 = 0 is:", opts:["0","4","−4","8"], ans:0, exp:"Δ = (−2)² − 4·1·1 = 0."},
+    {q:"The minimum value of y = x² + 2x + 3 is:", opts:["1","2","3","4"], ans:1, exp:"Vertex: x = −1, y = 1 − 2 + 3 = 2."},
+    {q:"Solve x² − 5x + 6 = 0.", opts:["x = 1, 6","x = 2, 3","x = −2, −3","x = 1, 5"], ans:1, exp:"(x − 2)(x − 3) = 0."},
+    {q:"y = −x² + 4x has its maximum at:", opts:["x = 2","x = −2","x = 4","x = 0"], ans:0, exp:"a < 0 ⇒ max at x = −b/2a = 2."},
+    {q:"The equation x² + 1 = 0 has:", opts:["2 roots","1 root","No real roots","Infinite roots"], ans:2, exp:"Δ = 0 − 4 = −4 < 0."},
+    {q:"Which of the following is a quadratic function?", opts:["y = 2x + 1","y = x² − 3x","y = 1/x²","y = √x"], ans:1, exp:"Quadratic form: ax² + bx + c."},
+    {q:"If a > 0, then ax² + bx + c > 0 for all x when:", opts:["Δ > 0","Δ = 0","Δ < 0","Never"], ans:2, exp:"Δ < 0 and a > 0 ⇒ f(x) > 0 for all x."}
+  ]
+};
+
+/* ---------- SYSTEM 2 (12 MC + 4 T/F + 6 Short = 22) ---------- */
+const SYS2 = {
+  1: {
+    mc: [
+      {q:"Which of the following is NOT a set?", opts:["{1, 2}","ℕ","x + 1 = 0","ℤ"], ans:2, exp:"An equation is not a set."},
+      {q:"A = {1, 2, 3, 4, 5}, B = {2, 4, 6}. Find A ∩ B.", opts:["{2, 4}","{1, 3, 5}","{6}","{1, 2, 3, 4, 5, 6}"], ans:0, exp:"Common elements."},
+      {q:"Number of subsets of {1, 2, 3, 4} is:", opts:["8","12","16","4"], ans:2, exp:"2⁴ = 16."},
+      {q:"The negation of 'x ≥ 3' is:", opts:["x > 3","x < 3","x ≤ 3","x ≠ 3"], ans:1, exp:"¬(x ≥ 3) ⇔ x < 3."},
+      {q:"'x is a multiple of 4' is a ______ condition for 'x is even'.", opts:["Necessary","Sufficient","Neither","Both"], ans:1, exp:"Multiple of 4 ⇒ even, but not conversely."},
+      {q:"A = [−1, 3), B = (1, 5]. Find A ∩ B.", opts:["(1, 3)","[−1, 5]","[1, 3)","(1, 3]"], ans:0, exp:"Overlap: (1, 3)."},
+      {q:"A = {x ∈ ℝ | x < 2}, B = {x ∈ ℝ | x ≥ −1}. Find A ∩ B.", opts:["[−1, 2)","(−∞, 2)","[−1, +∞)","∅"], ans:0, exp:"Combine: −1 ≤ x < 2."},
+      {q:"'2 + 2 = 5' is a proposition with truth value:", opts:["True","False","Unknown","Not a proposition"], ans:1, exp:"It is a proposition, and it is false."},
+      {q:"The set {x ∈ ℤ | −2 < x ≤ 3} in roster form:", opts:["{−1, 0, 1, 2, 3}","{−2, −1, 0, 1, 2, 3}","{−1, 0, 1, 2}","{0, 1, 2, 3}"], ans:0, exp:"Integer x with −2 < x ≤ 3."},
+      {q:"If A ⊂ B, which is TRUE?", opts:["A ∪ B = A","A ∩ B = A","A ∩ B = B","A \\ B = A"], ans:1, exp:"A ⊂ B ⇒ A ∩ B = A."},
+      {q:"P: 'n is divisible by 6'. Q: 'n is divisible by 3'. Then:", opts:["P ⇒ Q","Q ⇒ P","P ⇔ Q","P is negation of Q"], ans:0, exp:"Divisible by 6 ⇒ divisible by 3."},
+      {q:"The set ℝ \\ [1, 4] equals:", opts:["(1, 4)","(−∞, 1) ∪ (4, +∞)","(−∞, 1] ∪ [4, +∞)","[1, 4]"], ans:1, exp:"Complement of closed interval."}
+    ],
+    tf: [
+      {q:"Consider A = {1, 2, 3}, B = {2, 3, 4}. Decide True/False for each:",
+       items:[
+         {s:"1 ∈ B", a:false, e:"1 is not in B."},
+         {s:"A ∪ B = {1, 2, 3, 4}", a:true, e:"Union combines all."},
+         {s:"A \\ B = {1}", a:true, e:"Only 1 differs."},
+         {s:"A ⊂ B", a:false, e:"1 ∈ A but 1 ∉ B."}
+       ]},
+      {q:"Consider statements about sets and propositions:",
+       items:[
+         {s:"∅ is a subset of every set.", a:true, e:"Empty set is subset of any set."},
+         {s:"Every proposition is either true or false.", a:true, e:"Definition of proposition."},
+         {s:"The negation of 'P and Q' is 'not P or not Q'.", a:true, e:"De Morgan's law."},
+         {s:"A set with 3 elements has 6 subsets.", a:false, e:"It has 2³ = 8 subsets."}
+       ]},
+      {q:"About intervals and sets:",
+       items:[
+         {s:"[1, 3) ∪ (3, 5] = [1, 5] \\ {3}", a:true, e:"Union misses 3."},
+         {s:"(0, 1) ∩ [0, 1] = (0, 1)", a:true, e:"Overlap = (0,1)."},
+         {s:"ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ.", a:true, e:"Standard number sets."},
+         {s:"{1, 2} ⊂ {1, 2}", a:false, e:"A set is not a proper subset of itself."}
+       ]},
+      {q:"About implications:",
+       items:[
+         {s:"P ⇒ Q is equivalent to ¬P ∨ Q.", a:true, e:"Standard logical equivalence."},
+         {s:"'x = 2' is sufficient for 'x² = 4'.", a:true, e:"x = 2 ⇒ x² = 4."},
+         {s:"'x² = 4' is necessary for 'x = 2'.", a:true, e:"Yes, x = 2 requires x² = 4."},
+         {s:"'x > 0' is necessary for 'x > 5'.", a:true, e:"If x > 5, then x > 0 must hold."}
+       ]}
+    ],
+    short: [
+      {q:"If A = {1, 2, 3, 4, 5}, B = {3, 4, 5, 6}, find |A ∪ B| (number of elements).", ans:"6", exp:"A ∪ B = {1,2,3,4,5,6} ⇒ 6 elements."},
+      {q:"Find the number of subsets of {a, b, c, d, e}.", ans:"32", exp:"2⁵ = 32."},
+      {q:"Given A = [0, 3], B = (1, 5). Find A ∩ B in interval notation (write as [a,b] or (a,b)).", ans:"(1,3]", exp:"Overlap = (1, 3]."},
+      {q:"The negation of 'n is odd' is 'n is ______'.", ans:"even", exp:"Negation of odd = even."},
+      {q:"Given A = {x ∈ ℤ | −3 ≤ x < 2}. Find the number of elements of A.", ans:"5", exp:"Elements: −3, −2, −1, 0, 1 ⇒ 5."},
+      {q:"If A = {1, 2, 3} and B = {3, 4}, find |A \\ B|.", ans:"2", exp:"A \\ B = {1, 2} ⇒ 2."}
+    ]
+  },
+  2: {
+    mc: [
+      {q:"Domain of f(x) = (x + 1)/(x − 2) is:", opts:["ℝ","ℝ \\ {2}","ℝ \\ {−1}","[2, +∞)"], ans:1, exp:"x − 2 ≠ 0."},
+      {q:"For f(x) = 3x² − 1, f(−2) = ?", opts:["11","−13","13","5"], ans:0, exp:"3·4 − 1 = 11."},
+      {q:"Domain of f(x) = √(3 − x) is:", opts:["x ≤ 3","x ≥ 3","x < 3","All real"], ans:0, exp:"3 − x ≥ 0."},
+      {q:"Which function is odd?", opts:["f(x) = x²","f(x) = x³","f(x) = x + 1","f(x) = |x|"], ans:1, exp:"(−x)³ = −x³."},
+      {q:"The vertex of y = x² + 4x + 1 is:", opts:["(−2, −3)","(2, 13)","(−2, 1)","(2, 9)"], ans:0, exp:"x = −2, y = 4 − 8 + 1 = −3."},
+      {q:"The y-intercept of y = x² − 5x + 6 is:", opts:["6","−5","1","−6"], ans:0, exp:"Set x = 0 ⇒ y = 6."},
+      {q:"The function y = −2x + 3 is:", opts:["Increasing","Decreasing","Constant","Non-linear"], ans:1, exp:"a = −2 < 0 ⇒ decreasing."},
+      {q:"If f(x) = 2x + 1 and g(x) = x², find f(g(2)).", opts:["5","9","7","11"], ans:1, exp:"g(2) = 4, f(4) = 9."},
+      {q:"Range of f(x) = x² − 4x + 5 is:", opts:["ℝ","[1, +∞)","[5, +∞)","(−∞, 1]"], ans:1, exp:"Min value at vertex = 1."},
+      {q:"Line y = 2x − 1 passes through:", opts:["(0, 1)","(1, 1)","(2, 4)","(−1, −3)"], ans:1, exp:"At x = 1: y = 1."},
+      {q:"The function f(x) = |x| is:", opts:["Odd","Even","Neither","Both"], ans:1, exp:"|−x| = |x|."},
+      {q:"For y = x² − 6x + 8, axis of symmetry is:", opts:["x = 3","x = −3","x = 6","x = 2"], ans:0, exp:"x = −b/2a = 3."}
+    ],
+    tf: [
+      {q:"About functions:",
+       items:[
+         {s:"Domain of f(x) = 1/x is ℝ.", a:false, e:"Excludes x = 0."},
+         {s:"f(x) = x² is an even function.", a:true, e:"f(−x) = f(x)."},
+         {s:"A linear function y = ax + b always passes through the origin.", a:false, e:"Only if b = 0."},
+         {s:"Every real number has a real square root.", a:false, e:"Negative numbers do not."}
+       ]},
+      {q:"About quadratic functions y = ax² + bx + c:",
+       items:[
+         {s:"If a > 0, the parabola opens upward.", a:true, e:"Standard property."},
+         {s:"The vertex lies on the axis of symmetry.", a:true, e:"By definition."},
+         {s:"The y-intercept is c.", a:true, e:"Set x = 0."},
+         {s:"The function has exactly two x-intercepts.", a:false, e:"Depends on Δ."}
+       ]},
+      {q:"About domains:",
+       items:[
+         {s:"Domain of √(x − 1) is x ≥ 1.", a:true, e:"Radicand ≥ 0."},
+         {s:"Domain of 1/(x² − 1) is ℝ \\ {−1, 1}.", a:true, e:"Denominator ≠ 0."},
+         {s:"Domain of every polynomial is ℝ.", a:true, e:"Polynomials are defined everywhere."},
+         {s:"Domain of √(x² + 1) is x ≥ 1.", a:false, e:"x² + 1 > 0 always, so domain is ℝ."}
+       ]},
+      {q:"About slopes and intercepts:",
+       items:[
+         {s:"Two parallel lines have equal slopes.", a:true, e:"Standard property."},
+         {s:"A vertical line has undefined slope.", a:true, e:"Slope = Δy/Δx, Δx = 0."},
+         {s:"y = 5 is a linear function.", a:true, e:"Constant function: a = 0, still linear (in broad sense)."},
+         {s:"y = −x + 2 has negative slope.", a:true, e:"Slope = −1."}
+       ]}
+    ],
+    short: [
+      {q:"Find f(3) if f(x) = 2x² − 5x + 1.", ans:"4", exp:"18 − 15 + 1 = 4."},
+      {q:"Find the domain of f(x) = √(2x − 6). Write as x ≥ ___.", ans:"3", exp:"2x − 6 ≥ 0 ⇒ x ≥ 3."},
+      {q:"The x-coordinate of the vertex of y = x² − 8x + 3 is:", ans:"4", exp:"x = 8/2 = 4."},
+      {q:"The slope of the line through A(1, 2) and B(4, 11) is:", ans:"3", exp:"(11−2)/(4−1) = 3."},
+      {q:"If f is even and f(2) = 7, find f(−2).", ans:"7", exp:"Even ⇒ f(−x) = f(x)."},
+      {q:"The minimum value of y = (x − 3)² + 5 is:", ans:"5", exp:"Minimum when x = 3 ⇒ y = 5."}
+    ]
+  },
+  3: {
+    mc: [
+      {q:"The discriminant of 2x² − 3x + 1 = 0 is:", opts:["1","17","−1","5"], ans:0, exp:"Δ = 9 − 8 = 1."},
+      {q:"Roots of x² − 7x + 12 = 0 are:", opts:["3, 4","−3, −4","2, 6","1, 12"], ans:0, exp:"(x − 3)(x − 4) = 0."},
+      {q:"Solution of x² − 9 < 0 is:", opts:["x < −3","x > 3","−3 < x < 3","x ≠ 3"], ans:2, exp:"a > 0, Δ > 0, inside interval."},
+      {q:"If x₁, x₂ are roots of x² − 5x + 6 = 0, find x₁ + x₂.", opts:["5","−5","6","11"], ans:0, exp:"Vieta: S = −b/a = 5."},
+      {q:"The maximum value of y = −x² + 6x − 5 is:", opts:["4","5","6","9"], ans:0, exp:"Vertex: x = 3, y = −9 + 18 − 5 = 4."},
+      {q:"Solution of x² + x + 1 > 0 is:", opts:["x > 1","x < −1","All real x","No solution"], ans:2, exp:"Δ = −3 < 0, a > 0 ⇒ always positive."},
+      {q:"The graph of y = −2x² + 4x + 1 has vertex:", opts:["(1, 3)","(−1, −5)","(2, 1)","(1, −3)"], ans:0, exp:"x = 1, y = −2 + 4 + 1 = 3."},
+      {q:"Solution set of (x − 1)(x + 3) ≤ 0 is:", opts:["[−3, 1]","(−∞, −3] ∪ [1, +∞)","(−3, 1)","[1, +∞)"], ans:0, exp:"Between roots."},
+      {q:"If Δ = 0, the quadratic equation has:", opts:["Two roots","One (double) root","No roots","Infinite roots"], ans:1, exp:"Double root at x = −b/2a."},
+      {q:"The equation x² − 2x + m = 0 has two distinct roots when:", opts:["m < 1","m = 1","m > 1","m > 0"], ans:0, exp:"Δ > 0 ⇒ 4 − 4m > 0 ⇒ m < 1."},
+      {q:"Solution of x² − 4x + 4 > 0 is:", opts:["x ≠ 2","x > 2","x < 2","All real"], ans:0, exp:"(x−2)² > 0 ⇔ x ≠ 2."},
+      {q:"Which of the following has no real solution?", opts:["x² − x − 1 = 0","x² + 1 = 0","x² − 4 = 0","x² + x = 0"], ans:1, exp:"Δ = −4 < 0."}
+    ],
+    tf: [
+      {q:"About quadratics:",
+       items:[
+         {s:"Δ = b² − 4ac.", a:true, e:"Standard formula."},
+         {s:"If Δ < 0, the equation has two real roots.", a:false, e:"No real roots."},
+         {s:"If Δ = 0, the equation has a double root.", a:true, e:"x = −b/2a."},
+         {s:"Vieta: x₁ + x₂ = −b/a.", a:true, e:"Standard."}
+       ]},
+      {q:"About inequalities:",
+       items:[
+         {s:"x² ≥ 0 for all real x.", a:true, e:"Square is non-negative."},
+         {s:"x² > 0 for all real x.", a:false, e:"False when x = 0."},
+         {s:"If a > 0 and Δ < 0, then ax² + bx + c > 0 for all x.", a:true, e:"Sign of quadratic."},
+         {s:"x² + 1 < 0 has solutions.", a:false, e:"LHS ≥ 1 > 0."}
+       ]},
+      {q:"About parabolas:",
+       items:[
+         {s:"y = x² has minimum value 0.", a:true, e:"At x = 0."},
+         {s:"y = −x² has maximum value 0.", a:true, e:"At x = 0."},
+         {s:"Axis of symmetry of y = x² − 4x is x = 2.", a:true, e:"−b/2a = 4/2 = 2."},
+         {s:"Two parabolas y = x² and y = −x² have the same vertex.", a:true, e:"Both at origin."}
+       ]},
+      {q:"About systems:",
+       items:[
+         {s:"x + y = 3, x − y = 1 has solution (2, 1).", a:true, e:"Solve: x = 2, y = 1."},
+         {s:"A system of two linear equations can have exactly one solution.", a:true, e:"If lines intersect."},
+         {s:"A system of two linear equations can have no solution.", a:true, e:"If lines are parallel."},
+         {s:"A system of two linear equations always has a solution.", a:false, e:"Parallel lines give none."}
+       ]}
+    ],
+    short: [
+      {q:"Find the discriminant of x² − 4x + 1 = 0.", ans:"12", exp:"Δ = 16 − 4 = 12."},
+      {q:"If x₁ + x₂ = 7 and x₁·x₂ = 10, find the quadratic equation x² − Sx + P = 0. What is S + P?", ans:"17", exp:"S = 7, P = 10 ⇒ S + P = 17."},
+      {q:"Find the minimum value of y = x² − 6x + 11.", ans:"2", exp:"Vertex (3, 2)."},
+      {q:"Solve x² − 5x = 0. Write the positive root.", ans:"5", exp:"x(x − 5) = 0."},
+      {q:"Number of real roots of x² + 4x + 5 = 0.", ans:"0", exp:"Δ = 16 − 20 = −4 < 0."},
+      {q:"If the quadratic x² − 2mx + 4 = 0 has a double root, find m > 0.", ans:"2", exp:"Δ = 4m² − 16 = 0 ⇒ m = 2."}
+    ]
+  }
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let USER = null;
+let SYS1_STATE = {1:{ans:{},score:0},2:{ans:{},score:0},3:{ans:{},score:0}};
+let SYS2_STATE = {
+  1:{started:false, finished:false, mc:{}, tf:{}, short:{}, startTime:0, elapsed:0},
+  2:{started:false, finished:false, mc:{}, tf:{}, short:{}, startTime:0, elapsed:0},
+  3:{started:false, finished:false, mc:{}, tf:{}, short:{}, startTime:0, elapsed:0}
+};
+let SYS2_TIMER = null;
+const EXAM_DURATION = 45 * 60; // 45 minutes
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+function doLogin(){
+  const name = document.getElementById('lgName').value.trim();
+  const cls  = document.getElementById('lgClass').value.trim();
+  const sch  = document.getElementById('lgSchool').value.trim() || 'THPT Trần Phú';
+  if(!name || !cls){ toast('⚠️ Please enter your name and class'); return; }
+  USER = {name, cls, sch, joined: Date.now()};
+  localStorage.setItem('math10_user', JSON.stringify(USER));
+  startApp();
+}
+function doLogout(){
+  if(!confirm('Log out?')) return;
+  localStorage.removeItem('math10_user');
+  location.reload();
+}
+function startApp(){
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('ubName').textContent = USER.name + ' · ' + USER.cls;
+  document.getElementById('ubAvatar').textContent = USER.name.charAt(0).toUpperCase();
+  document.getElementById('heroName').textContent = USER.name.split(' ').pop();
+  renderVocab();
+  renderSys1(1);
+  renderSys2(1);
+  renderRanking();
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+document.getElementById('tabs').addEventListener('click', e => {
+  const t = e.target.closest('.tab');
+  if(!t) return;
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + t.dataset.tab).classList.add('active');
+  if(t.dataset.tab === 'rank') renderRanking();
+});
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ============================================================
+   VOCABULARY
+   ============================================================ */
+function renderVocab(){
+  [1,2,3].forEach(g => {
+    const el = document.getElementById('vocab' + g);
+    el.innerHTML = VOCAB[g].map(v => `
+      <div class="vocab-item">
+        <div class="en">${v.en}
+          <button class="speak-btn" onclick="speak('${v.en.replace(/'/g,"\\'")}')">🔊</button>
+        </div>
+        <div class="ipa">${v.ipa}</div>
+        <div class="vi">${v.vi}</div>
+      </div>
+    `).join('');
+  });
+}
+function speak(text){
+  if(!('speechSynthesis' in window)){ toast('⚠️ Your browser does not support speech.'); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.8; u.pitch = 1.05;
+  speechSynthesis.speak(u);
+}
+
+/* ============================================================
+   SYSTEM 1
+   ============================================================ */
+document.querySelectorAll('.sys1-tab[data-g]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sys1-tab[data-g]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSys1(+btn.dataset.g);
+  });
+});
+
+function renderSys1(g){
+  const st = SYS1_STATE[g];
+  const qs = SYS1[g];
+  const labels = ['A','B','C','D'];
+  const diff = ['easy','easy','med','med','med','med','hard','hard','hard','hard'];
+  let html = '';
+  qs.forEach((q, i) => {
+    const chosen = st.ans[i];
+    const done = chosen !== undefined;
+    const isRight = done && chosen === q.ans;
+    html += `
+      <div class="q-block">
+        <div class="q-header">
+          <div class="q-num">${i+1}</div>
+          <div class="q-text">${q.q}</div>
+          <span class="pill ${diff[i]}" style="margin-left:auto">${diff[i]==='easy'?'Dễ':diff[i]==='med'?'TB':'Khó'}</span>
+        </div>
+        <div class="opt-list">
+          ${q.opts.map((o, k) => {
+            let cls = 'opt';
+            if(done){
+              cls += ' locked';
+              if(k === q.ans) cls += ' correct';
+              else if(k === chosen) cls += ' wrong';
+            }
+            return `<div class="${cls}" onclick="pickS1(${g},${i},${k})">
+              <div class="letter">${labels[k]}</div><div>${o}</div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="explain ${done?'show':''}">
+          <b>${isRight?'✅ Correct!':'❌ Incorrect.'}</b> ${q.exp}
+        </div>
+      </div>`;
+  });
+  // Summary
+  const answered = Object.keys(st.ans).length;
+  const correct = Object.keys(st.ans).filter(k => st.ans[k] === qs[k].ans).length;
+  if(answered === qs.length){
+    const pct = Math.round(correct / qs.length * 100);
+    let advice = '';
+    if(pct >= 90) advice = "🌟 Excellent! You have mastered this topic. Move on to the next group.";
+    else if(pct >= 70) advice = "👍 Good job! Review the questions you missed and try again.";
+    else if(pct >= 50) advice = "📖 You need more practice. Re-read the theory section and redo this group.";
+    else advice = "🔁 Please review the theory carefully, then practise again. Ask your teacher if needed.";
+    html = `
+      <div class="result-box">
+        <div class="label">GROUP ${g} RESULT</div>
+        <div class="score">${correct}/${qs.length}</div>
+        <div class="label">Accuracy: ${pct}%</div>
+        <div class="stat-grid">
+          <div class="stat"><div class="n" style="color:#10b981">${correct}</div><div class="l">Correct</div></div>
+          <div class="stat"><div class="n" style="color:#ef4444">${qs.length-correct}</div><div class="l">Wrong</div></div>
+          <div class="stat"><div class="n">${qs.length}</div><div class="l">Total</div></div>
+        </div>
+        <div class="advice"><h4>📌 Study advice</h4>${advice}</div>
+        <div style="margin-top:16px"><button class="btn" onclick="resetSys1(${g})">🔄 Redo this group</button></div>
+      </div>
+    ` + html;
+  } else {
+    html = `
+      <div class="card" style="padding:14px 20px">
+        <b>Progress:</b> ${answered} / ${qs.length} answered
+        ${answered>0?`<button class="btn ghost" style="float:right;padding:6px 14px;font-size:12px" onclick="resetSys1(${g})">Reset</button>`:''}
+      </div>
+    ` + html;
+  }
+  document.getElementById('sys1Content').innerHTML = html;
+}
+
+function pickS1(g, i, k){
+  if(SYS1_STATE[g].ans[i] !== undefined) return;
+  SYS1_STATE[g].ans[i] = k;
+  renderSys1(g);
+}
+function resetSys1(g){
+  SYS1_STATE[g] = {ans:{}, score:0};
+  renderSys1(g);
+}
+
+/* ============================================================
+   SYSTEM 2
+   ============================================================ */
+document.querySelectorAll('.sys1-tab[data-s2]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if(SYS2_STATE[currentS2()]?.started && !SYS2_STATE[currentS2()]?.finished){
+      if(!confirm('Bạn đang làm bài. Chuyển nhóm sẽ mất tiến trình đang làm. Tiếp tục?')) return;
+    }
+    document.querySelectorAll('.sys1-tab[data-s2]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    clearInterval(SYS2_TIMER);
+    renderSys2(+btn.dataset.s2);
+  });
+});
+
+function currentS2(){
+  const a = document.querySelector('.sys1-tab[data-s2].active');
+  return a ? +a.dataset.s2 : 1;
+}
+
+function renderSys2(g){
+  const data = SYS2[g];
+  const st = SYS2_STATE[g];
+  const container = document.getElementById('sys2Content');
+
+  if(!st.started){
+    container.innerHTML = `
+      <div class="card" style="text-align:center;padding:30px">
+        <h3 style="justify-content:center"><span class="num">📝</span>Mock Exam – Group ${g}</h3>
+        <p style="color:#64748b;margin-bottom:14px">22 questions · 3 parts · 45 minutes</p>
+        <ul style="text-align:left;max-width:520px;margin:0 auto 18px;font-size:14px;color:#475569">
+          <li><b>Part I (12 MCQ):</b> 12 × 0.25 = 3.0 points</li>
+          <li><b>Part II (4 True/False × 4 items):</b> up to 4.0 points</li>
+          <li><b>Part III (6 short answer):</b> 6 × 0.5 = 3.0 points</li>
+          <li>Total: <b>10.0 points</b></li>
+        </ul>
+        <button class="btn" onclick="startExam(${g})">▶ Start Exam</button>
+      </div>`;
+    return;
+  }
+
+  if(st.finished){ renderSys2Result(g); return; }
+
+  // Render exam
+  let html = `
+    <div class="timer-bar">
+      <div>⏱ <span class="time" id="timerDisplay">45:00</span></div>
+      <div style="font-size:12px;opacity:.85">Group ${g}</div>
+      <div class="info" id="progressInfo">0 / 22 answered</div>
+    </div>
+  `;
+
+  // PART I
+  html += `<div class="q-part-title">PHẦN I. Trắc nghiệm nhiều lựa chọn (12 câu × 0.25 điểm)</div>`;
+  data.mc.forEach((q, i) => {
+    const chosen = st.mc[i];
+    html += `<div class="q-block">
+      <div class="q-header"><div class="q-num">${i+1}</div><div class="q-text">${q.q}</div></div>
+      <div class="opt-list">
+        ${q.opts.map((o, k) => {
+          const cls = 'opt' + (chosen === k ? ' selected' : '');
+          return `<div class="${cls}" style="${chosen===k?'background:#eef2ff;border-color:#6366f1':''}" onclick="pickMC(${g},${i},${k})">
+            <div class="letter">${'ABCD'[k]}</div><div>${o}</div></div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  // PART II
+  html += `<div class="q-part-title">PHẦN II. Trắc nghiệm đúng/sai (4 câu × tối đa 1 điểm)</div>`;
+  data.tf.forEach((q, i) => {
+    const sel = st.tf[i] || {};
+    html += `<div class="q-block">
+      <div class="q-header"><div class="q-num">${i+1}</div><div class="q-text">${q.q}</div></div>
+      <div class="tf-list">
+        ${q.items.map((it, k) => `
+          <div class="tf-row">
+            <div class="stmt"><b>${'abcd'[k]})</b> ${it.s}</div>
+            <button class="tf-btn t ${sel[k]===true?'selected':''}" onclick="pickTF(${g},${i},${k},true)">True</button>
+            <button class="tf-btn f ${sel[k]===false?'selected':''}" onclick="pickTF(${g},${i},${k},false)">False</button>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+
+  // PART III
+  html += `<div class="q-part-title">PHẦN III. Trả lời ngắn (6 câu × 0.5 điểm)</div>`;
+  data.short.forEach((q, i) => {
+    html += `<div class="q-block">
+      <div class="q-header"><div class="q-num">${i+1}</div><div class="q-text">${q.q}</div></div>
+      <input class="short-input" placeholder="Nhập đáp án..." value="${st.short[i]||''}" oninput="pickShort(${g},${i},this.value)">
+    </div>`;
+  });
+
+  html += `<div style="text-align:center;margin:24px 0">
+    <button class="btn" onclick="submitExam(${g})">✅ Submit Exam</button>
+    <button class="btn ghost" onclick="cancelExam(${g})" style="margin-left:8px">Cancel</button>
+  </div>`;
+
+  container.innerHTML = html;
+  startTimer(g);
+}
+
+function startExam(g){
+  SYS2_STATE[g] = {started:true, finished:false, mc:{}, tf:{}, short:{}, startTime: Date.now(), elapsed:0};
+  renderSys2(g);
+}
+function cancelExam(g){
+  if(!confirm('Cancel this exam? Your progress will be lost.')) return;
+  clearInterval(SYS2_TIMER);
+  SYS2_STATE[g] = {started:false, finished:false, mc:{}, tf:{}, short:{}, startTime:0, elapsed:0};
+  renderSys2(g);
+}
+
+function pickMC(g,i,k){ SYS2_STATE[g].mc[i]=k; updateProgress(g); refreshOpts(g); }
+function pickTF(g,i,k,v){
+  const st = SYS2_STATE[g];
+  if(!st.tf[i]) st.tf[i]={};
+  st.tf[i][k]=v;
+  updateProgress(g); renderSys2(g);
+}
+function pickShort(g,i,v){ SYS2_STATE[g].short[i]=v; updateProgress(g); }
+
+function refreshOpts(g){
+  // Re-render only MCQ options quickly — easiest: re-render all
+  const st = SYS2_STATE[g];
+  const data = SYS2[g];
+  data.mc.forEach((q,i)=>{
+    const chosen = st.mc[i];
+    const blocks = document.querySelectorAll('#sys2Content .q-block');
+    if(blocks[i]){
+      const opts = blocks[i].querySelectorAll('.opt');
+      opts.forEach((o,k)=>{
+        o.classList.remove('selected');
+        o.style.background=''; o.style.borderColor='';
+        if(chosen===k){ o.classList.add('selected'); o.style.background='#eef2ff'; o.style.borderColor='#6366f1'; }
+      });
+    }
+  });
+}
+
+function updateProgress(g){
+  const st = SYS2_STATE[g];
+  const total = 12 + 4 + 6;
+  let done = Object.keys(st.mc).length;
+  // T/F: count each of the 4 questions as done if at least 1 item answered
+  done += Object.keys(st.tf).filter(k => Object.keys(st.tf[k]).length > 0).length;
+  done += Object.values(st.short).filter(v => v && v.trim()).length;
+  const el = document.getElementById('progressInfo');
+  if(el) el.textContent = `${done} / ${total} answered`;
+}
+
+let TIMER_INTERVAL = null;
+function startTimer(g){
+  clearInterval(TIMER_INTERVAL);
+  TIMER_INTERVAL = setInterval(() => {
+    const st = SYS2_STATE[g];
+    if(!st.started || st.finished){ clearInterval(TIMER_INTERVAL); return; }
+    const el = Date.now() - st.startTime;
+    const remain = EXAM_DURATION * 1000 - el;
+    const m = Math.max(0, Math.floor(remain/60000));
+    const s = Math.max(0, Math.floor((remain%60000)/1000));
+    const disp = document.getElementById('timerDisplay');
+    if(disp){
+      disp.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      if(remain < 5*60*1000) disp.classList.add('warn');
+    }
+    if(remain <= 0){ clearInterval(TIMER_INTERVAL); toast('⏰ Time is up! Auto-submitting...'); submitExam(g); }
+  }, 1000);
+}
+
+function submitExam(g){
+  clearInterval(TIMER_INTERVAL);
+  const st = SYS2_STATE[g];
+  st.finished = true;
+  st.elapsed = Math.floor((Date.now() - st.startTime) / 1000);
+  st.score = computeScore(g);
+  saveRanking(g, st.score, st.elapsed);
+  renderSys2Result(g);
+}
+
+function computeScore(g){
+  const data = SYS2[g];
+  const st = SYS2_STATE[g];
+  let score = 0;
+  // MCQ: 0.25 each
+  data.mc.forEach((q,i)=>{ if(st.mc[i]===q.ans) score += 0.25; });
+  // T/F: per question
+  data.tf.forEach((q,i)=>{
+    const sel = st.tf[i] || {};
+    let correct = 0;
+    q.items.forEach((it,k)=>{ if(sel[k]===it.a) correct++; });
+    if(correct === 1) score += 0.1;
+    else if(correct === 2) score += 0.25;
+    else if(correct === 3) score += 0.5;
+    else if(correct === 4) score += 1.0;
+  });
+  // Short: 0.5 each (exact string match after normalization)
+  data.short.forEach((q,i)=>{
+    const v = (st.short[i]||'').toString().trim().toLowerCase().replace(/\s+/g,'');
+    const a = q.ans.toString().trim().toLowerCase();
+    if(v === a) score += 0.5;
+  });
+  return Math.round(score * 100) / 100;
+}
+
+function renderSys2Result(g){
+  const data = SYS2[g];
+  const st = SYS2_STATE[g];
+  const total = 10;
+  const pct = Math.round(st.score / total * 100);
+  const m = Math.floor(st.elapsed / 60);
+  const s = st.elapsed % 60;
+
+  let advice = '';
+  if(pct >= 90) advice = "🌟 Outstanding! You are fully prepared for the mid-term.";
+  else if(pct >= 75) advice = "👍 Very good. Review a few weak spots before the exam.";
+  else if(pct >= 50) advice = "📖 Fair. Focus on the theory sections you are weak at.";
+  else advice = "🔁 You need serious revision. Re-read theory, then redo System 1 first.";
+
+  // Wrong questions analysis
+  let wrongMC = [], wrongTF = [], wrongShort = [];
+  data.mc.forEach((q,i)=>{ if(st.mc[i]!==q.ans) wrongMC.push(i+1); });
+  data.tf.forEach((q,i)=>{
+    const sel = st.tf[i]||{};
+    const n = q.items.filter((it,k)=>sel[k]===it.a).length;
+    if(n<4) wrongTF.push(`Câu ${i+1} (${n}/4 đúng)`);
+  });
+  data.short.forEach((q,i)=>{
+    const v = (st.short[i]||'').toString().trim().toLowerCase().replace(/\s+/g,'');
+    if(v !== q.ans.toString().trim().toLowerCase()) wrongShort.push(i+1);
+  });
+
+  let html = `
+    <div class="result-box">
+      <div class="label">EXAM RESULT · GROUP ${g}</div>
+      <div class="score">${st.score.toFixed(2)} / 10</div>
+      <div class="label">${pct}% · Time: ${m}m ${s}s</div>
+      <div class="stat-grid">
+        <div class="stat"><div class="n">${wrongMC.length}</div><div class="l">MCQ wrong</div></div>
+        <div class="stat"><div class="n">${wrongTF.length}</div><div class="l">T/F partial</div></div>
+        <div class="stat"><div class="n">${wrongShort.length}</div><div class="l">Short wrong</div></div>
+      </div>
+      <div class="advice">
+        <h4>📌 Study advice</h4>${advice}
+        ${wrongMC.length? `<p><b>Wrong MCQ:</b> ${wrongMC.join(', ')}</p>`:''}
+        ${wrongTF.length? `<p><b>Partial T/F:</b> ${wrongTF.join(', ')}</p>`:''}
+        ${wrongShort.length? `<p><b>Wrong short answer:</b> ${wrongShort.join(', ')}</p>`:''}
+      </div>
+      <div style="margin-top:18px">
+        <button class="btn" onclick="reviewExam(${g})">🔍 Review answers</button>
+        <button class="btn ghost" onclick="retakeExam(${g})" style="margin-left:8px">🔄 Retake</button>
+      </div>
+    </div>`;
+
+  // Full review
+  html += `<div class="q-part-title">Review – Part I</div>`;
+  data.mc.forEach((q,i)=>{
+    const chosen = st.mc[i];
+    const ok = chosen === q.ans;
+    html += `<div class="q-block">
+      <div class="q-header"><div class="q-num">${i+1}</div><div class="q-text">${q.q}</div></div>
+      <div class="opt-list">
+        ${q.opts.map((o,k)=>{
+          let cls='opt locked';
+          if(k===q.ans) cls+=' correct';
+          else if(k===chosen) cls+=' wrong';
+          return `<div class="${cls}"><div class="letter">${'ABCD'[k]}</div><div>${o}</div></div>`;
+        }).join('')}
+      </div>
+      <div class="explain show"><b>${ok?'✅ Correct':'❌ Wrong'}</b> — ${q.exp}</div>
+    </div>`;
+  });
+
+  html += `<div class="q-part-title">Review – Part II</div>`;
+  data.tf.forEach((q,i)=>{
+    const sel = st.tf[i]||{};
+    html += `<div class="q-block">
+      <div class="q-header"><div class="q-num">${i+1}</div><div class="q-text">${q.q}</div></div>
+      <div class="tf-list">
+        ${q.items.map((it,k)=>{
+          const ok = sel[k]===it.a;
+          return `<div class="tf-row">
+            <div class="stmt">${ok?'✅':'❌'} <b>${'abcd'[k]})</b> ${it.s}</div>
+            <span style="font-size:12px;font-weight:600;color:${ok?'#10b981':'#ef4444'}">${it.a?'True':'False'}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="q-part-title">Review – Part III</div>`;
+  data.short.forEach((q,i)=>{
+    const v = st.short[i]||'(bỏ trống)';
+    const ok = v.toString().trim().toLowerCase().replace(/\s+/g,'') === q.ans.toString().trim().toLowerCase();
+    html += `<div class="q-block">
+      <div class="q-header"><div class="q-num">${i+1}</div><div class="q-text">${q.q}</div></div>
+      <div style="padding:10px;background:#f8fafc;border-radius:10px;font-size:14px">
+        Your answer: <b>${v}</b><br>
+        Correct answer: <b style="color:#10b981">${q.ans}</b><br>
+        <span style="color:#64748b;font-size:12px">${q.exp}</span>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('sys2Content').innerHTML = html;
+}
+
+function retakeExam(g){
+  if(!confirm('Retake this exam?')) return;
+  SYS2_STATE[g] = {started:false, finished:false, mc:{}, tf:{}, short:{}, startTime:0, elapsed:0};
+  renderSys2(g);
+}
+
+/* ============================================================
+   RANKING
+   ============================================================ */
+function todayKey(){
+  const d = new Date();
+  return `rank_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;
+}
+
+function saveRanking(g, score, elapsed){
+  if(!USER) return;
+  const key = todayKey();
+  const all = JSON.parse(localStorage.getItem(key) || '[]');
+  all.push({
+    name: USER.name, cls: USER.cls, school: USER.sch,
+    group: g, score: score, elapsed: elapsed,
+    time: new Date().toLocaleTimeString('vi-VN')
+  });
+  localStorage.setItem(key, JSON.stringify(all));
+}
+
+function renderRanking(){
+  const key = todayKey();
+  const all = JSON.parse(localStorage.getItem(key) || '[]');
+  // Sort: score DESC, then elapsed ASC
+  all.sort((a,b) => b.score - a.score || a.elapsed - b.elapsed);
+  const el = document.getElementById('rankContent');
+  if(all.length === 0){
+    el.innerHTML = `<div class="empty"><div class="ico">🏁</div>No results yet today.<br>Take a System-2 exam to appear on the leaderboard!</div>`;
+    return;
+  }
+  // Keep only best per (name + group)
+  const best = {};
+  all.forEach(r => {
+    const k = r.name + '|' + r.group;
+    if(!best[k] || r.score > best[k].score || (r.score === best[k].score && r.elapsed < best[k].elapsed))
+      best[k] = r;
+  });
+  const rows = Object.values(best).sort((a,b) => b.score - a.score || a.elapsed - b.elapsed);
+  let html = `<table class="rank-table"><thead><tr>
+    <th>#</th><th>Name</th><th>Class</th><th>Group</th><th>Score</th><th>Time</th>
+  </tr></thead><tbody>`;
+  rows.forEach((r,i)=>{
+    const m = Math.floor(r.elapsed/60), s = r.elapsed%60;
+    let badge = `<span class="rank-badge">${i+1}</span>`;
+    if(i===0) badge = `<span class="rank-badge gold">🥇</span>`;
+    else if(i===1) badge = `<span class="rank-badge silver">🥈</span>`;
+    else if(i===2) badge = `<span class="rank-badge bronze">🥉</span>`;
+    html += `<tr>
+      <td>${badge}</td>
+      <td><b>${r.name}</b></td>
+      <td>${r.cls}</td>
+      <td>G${r.group}</td>
+      <td><b style="color:#4f46e5">${r.score.toFixed(2)}</b></td>
+      <td>${m}m ${s}s</td>
+    </tr>`;
+  });
+  html += `</tbody></table>`;
+  el.innerHTML = html;
+}
+
+function clearRank(){
+  if(!confirm('Clear today\'s ranking data?')) return;
+  localStorage.removeItem(todayKey());
+  renderRanking();
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(function(){
+  const saved = localStorage.getItem('math10_user');
+  if(saved){
+    try{
+      USER = JSON.parse(saved);
+      startApp();
+    }catch(e){ localStorage.removeItem('math10_user'); }
+  }
+})();
+</script>
+</body>
+</html>
